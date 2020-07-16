@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  .container{
+    text-align: center;
+  }
+</style>
+<script>
+
+  var cnt = {{likes}};
+  function like() {
+    
+    if (cnt< {{likes}}+1) {
+      cnt = cnt + 1;
+      document.getElementById("para1").value = cnt
+      var para = document.getElementById("para");
+      para.innerHTML= cnt;
+      
+
+    } else  {
+      cnt = cnt -1;
+      var para = document.getElementById("para");
+      para.innerHTML= cnt;
+      document.getElementById("para1").value = cnt
+    }
+    
+  }
+</script>
+    </head>
+
+</html>
+<body>
+    <div class ="container">
+   <h1>DESCRIPTION ABOUT EVENT</h1> 
+   
+   </div> 
+   <form method="post" action="/description">
+<label>Likes:</label><p style="visibility: none;text-decoration:none;" id="para">{{likes}}</p>
+<input type="hidden" id="para1" value="" name="para">
+<input type="button" name="likes" onclick="like()" value ="likes"/>
+<label>comments:</label>
+<textarea cols="20" rows="5" name="comments"></textarea>
+<input type="submit" name="submit" value="POST"/>
+</form>
+<table>
+  <tr><th>USER</th><th>COMMENTS</th></tr>
+  {{#each description}}
+  <tr><td>{{this.userName}}</td><td>{{this.comments}}</td><tr>
+    {{/each}}
+</table>
+
+
+<a href="/buyTicket">BUY TICKET</a>
+</body>

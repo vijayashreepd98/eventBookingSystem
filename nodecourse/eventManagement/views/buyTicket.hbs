@@ -1,0 +1,48 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+
+        $(document).ready(() => {
+     
+            $('#btn1').click(()=>{
+    
+                $.ajax({
+                    url:"/buyTicket?ticket={{ticket}}&username={{username}}&eventname={{eventname}}&bookingStartTime={{bookingStartTime}}&bookingEndTime={{bookingEndTime}}&cost={{cost}}",
+                    method:"POST",
+                    dataType:"text",
+                    data:{
+                        number:$('#number').val()
+             
+                    },
+                    success:function(response){
+                        var data = JSON.parse(response);
+                        alert(data[0].message);
+                        }
+                })          
+          });
+ });
+
+</script>
+<style>
+    body{
+        background-color: plum;
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+    <h2>BUY TICKET </h2>
+        <div class="form-group">
+        <label for="email">No of Ticket:</label>
+            <input type="number" class="form-control" id="number" placeholder="Enter numbers" name="number">
+        </div>
+        <button id="btn1" class="btn btn-default" >BUY</button>
+    </div>
+    <a  id="btn" href="/descriptionPage?status={{status}}&username={{username}}&id={{eventId}}&eventName={{eventname}}&cost={{cost}}&bookingStartTime={{bookingStartTime}}&bookingEndTime={{bookingEndTime}}&likes={{likes}}&description={{description}}&tickets={{tickets}}"><button type="button" class="btn btn-warning">PREVIOUS</button></a> 
+</body>
+</html>

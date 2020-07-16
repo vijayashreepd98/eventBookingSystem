@@ -1,0 +1,55 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+    $(document)ready(function(){
+        $('#delete').click(()=>{
+            alert("Event deleted  successfully!!!!...");
+     });
+ });
+</script>
+
+<style>
+    #back{
+        position: absolute;
+        top:10px;
+        left: 30px;
+    }
+    table{
+        margin: 60px;
+    }
+      
+    table th{
+        color:white;
+        background-color: black;
+      
+  }
+</style>
+ 
+</head>
+<body>
+<table class="table table-hover">
+    <thead><tr><th>EVENT NAME</th><th>DESCRIPTION</th><th>AVAILABLE TICKET</th><th>BOOKING START TIME</th><th>BOOKING END TIME</th><th>COST</th><th>EDIT</th><th>DELETE</th></tr></thead>
+    {{#each events}}
+    <tr><td>{{this.eventName}}</td><td>{{this.description}}</td><td>{{this.maxNoOfTicket}}</td>
+    <td>{{this.bookingStartTime}}</td><td>{{this.bookingEndTime}}</td><td>{{this.cost}}</td><td><a href="/editView?eventName={{this.eventName}}&description={{this.description}}&tickets={{this.maxNoOfTicket}}
+     &bookingStartTime={{this.bookingStartTime}}&bookingEndTime={{this.bookingEndTime}}&cost={{this.cost}}" /><button style="color:blueviolet;background-color:cyan">EDIT</button ></a></td><td><a href="/deleteEvent?eventName={{this.eventName}}&description={{this.description}}&tickets={{this.maxNoOfTicket}}
+      &bookingStartTime={{this.bookingStartTime}}&bookingEndTime={{this.bookingEndTime}}&cost={{this.cost}}"/><button  id="delete"style="color:rgb(226, 43, 98);background-color:rgb(238, 241, 19)">DELETE</button></a></td></tr></tr>
+    {{/each}}
+</table>
+ <a href="/login"><button type="button" onclick="goBack()" class="btn btn-success" id="back">PREVIOUS</button>
+</a>
+</body>
+
+</html> 
+

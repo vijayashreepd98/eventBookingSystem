@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="/path/to/date-and-time.min.js"></script>
+    <script>
+      
+      {{!-- Handlebars.registerHelper("prettifyDate", function(timestamp) {
+        return (new Date(timestamp)).format("yyyy-MM-dd");
+      }); --}}
+      Handlebars.registerHelper('fun', function (start) {
+    return start' ';
+})
+
+      
+    </script>
+
+</head>
+<style>
+  body{
+    background-color:lightpink;
+  }
+  table{
+    margin-top: 40px;;
+  }
+  th{
+    background-color: black;
+    color:white;
+    padding:20px;
+  }
+  h1{
+    color:crimson;
+    text-align: center;
+  }
+</style>
+
+<body>
+  <h1 style="text-align: center;"><strong>EVENT DETAILS</strong> </h1>
+
+<table class="table table-hover">
+    <thead><tr><th>EVENT NAME</th></th><th>AVAILABLE TICKET</th><th>BOOKING START DATE</th><th>BOOKING END DATE</th><th>COST</th></tr></thead>
+ 
+    {{#each events}}
+    <tr><td><a href="/description?id={{this._id}}&likes={{this.likes}}&username={{../username}}&eventName={{this.eventName}}&description={{this.description}}&tickets={{this.maxNoOfTicket}}
+     &bookingStartTime=
+     {{this.bookingStartTime}} 
+     &bookingEndTime=
+     {{this.bookingEndTime}}
+     &cost={{this.cost}}" style="text-decoration: none;">{{this.eventName}}</a></td><td>{{this.maxNoOfTicket}}</td>
+    <td>{{this.bookingStartTime}} 
+    </td><td>{{this.bookingEndTime}} </td><td>{{this.cost}}</td></tr>
+    
+
+    {{/each}}
+
+  
+</table>
+<p>
+  <a href="/" class="btn btn-info btn-lg" style="position: absolute;right:30px;top:30px;">
+    <span class="glyphicon glyphicon-log-out"></span> Log out
+  </a>
+</p> 
+</body>
+</html> 
+
+
+

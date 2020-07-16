@@ -1,0 +1,122 @@
+{{!-- <html>
+    <head>
+<style>
+    h1{
+        text-align: center;
+        color:red;
+    }
+    .container{
+      width:300px;
+      height: 100px;
+      color: black;
+      background-color: blue;
+      border: 1.5px;
+      text-align: left;
+      border-width: 1.5px;
+    }
+</style>
+
+
+    </head>
+    <body>
+<h1>VIEW COMMENTS</h1>
+{{#each comments}}
+<div class="container">
+    <p id="uname"><strong>{{this.userName}} :</strong><p>{{this.comments}}</p>
+</div>
+
+{{/each}}
+
+
+    </body>
+
+</html> --}}
+
+
+
+
+
+
+
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+        const  xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            console.log("sucess");
+        }
+
+        xhr.open('POST','viewComments.hbs');
+        xhr.send();
+
+
+
+
+
+      </script>
+        <style>
+body{margin-top:20px;}
+
+.comment-wrapper .panel-body {
+    max-height:650px;
+    overflow:auto;
+}
+
+.comment-wrapper .media-list .media img {
+    width:64px;
+    height:64px;
+    border:2px solid #e5e7e8;
+}
+
+.comment-wrapper .media-list .media {
+    border-bottom:1px dashed #efefef;
+    margin-bottom:25px;
+}
+        </style>
+
+        </head>
+        <body>
+            <div class="row bootstrap snippets">
+    <div class="col-md-6 col-md-offset-2 col-sm-12">
+        <div class="comment-wrapper">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <strong>COMMENT PANEL</strong>
+                </div>
+                <div class="panel-body">
+                   
+                    <div class="clearfix"></div>
+                    <hr>
+                    <ul class="media-list">
+                       
+                        <li class="media">
+                            <a href="#" class="pull-left">
+                                <img src="https://bootdey.com/img/Content/user_2.jpg" alt="" class="img-circle">
+                            </a>
+                            
+                            <div class="media-body">
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted">{{time}}</small>
+                                </span>
+                                <strong class="text-success">@{{userName}}</strong>
+                                <p>
+                                  {{comments}} 
+                                </p>
+                            </div>
+                            
+                        </li>
+                      
+
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+            </body>
+    </head>
+    </html>

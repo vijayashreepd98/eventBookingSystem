@@ -99,7 +99,7 @@ app.get('/login',async (req,res) => {
 
 app.post('/register', (req, res) => {
   var name = req.body.uname;
-  // res.send(name);
+ 
   var password = req.body.password;
   var cpassword  = req.body.cpassword;
   if (password !==cpassword ) {
@@ -224,7 +224,7 @@ app.get('/descriptionPage',async (req,res)=> {
   });
   console.log(events.length);
   if (events.length===0) {
-    console.log("hgsgsgh");  
+    console.log("Failed");  
   const newUser = new eventActivityModel({
     eventName: req.query.eventName,
     userName: req.query.username,
@@ -235,16 +235,15 @@ app.get('/descriptionPage',async (req,res)=> {
   newUser.save().then(( ) => {
     console.log("success");
   }).catch(()=>{
-    console.log("hgsgsgh");
+    console.log("Failed");
   });
 }
-  console.log("hgsgsgh");
-  //console.log(req.query.username);
+  
+  
   const eventDetails = await addEventModel.findById(req.query.id);
   const allevents = await eventActivityModel.find( {eventName: req.query.eventName,userName: req.query.username 
   });
-  //console.log(allevents[0])
- 
+  
   if (eventDetails) {
     let color1, color2;
     if(!allevents){
@@ -272,7 +271,7 @@ app.get('/descriptionPage',async (req,res)=> {
         cost:eventDetails.cost,
         tickets:eventDetails.maxNoOfTicket
       });
-  //res.send(events[0].status)
+  
 } else {
   res.send("sorry");
 }
@@ -282,7 +281,7 @@ app.get('/description', async (req, res) => {
   const  events  = await eventActivityModel.find( {eventName: req.query.eventName,userName: req.query.username 
   });
   
-  //console.log(events[0].status);
+  
   if (events.length===0) {
   const newUser = new eventActivityModel({
     eventName: req.query.eventName,
@@ -296,17 +295,13 @@ app.get('/description', async (req, res) => {
   }).catch(()=>{
 
   });
- // eventsStatus = false;
+ 
   }
-  //console.log(events.status)
- // console.log(events[0].status);
-//res.send(req.query.id)
+  
   const eventDetails = await addEventModel.findById(req.query.id);
   const allevents = await eventActivityModel.find( {eventName: req.query.eventName,userName: req.query.username 
   });
-//console.log(allevents[0])
-  //res.send(eventDetails)
- //res.send(events[0]);
+
 if (eventDetails) {
   let color1, color2;
   if(!allevents){
@@ -319,12 +314,7 @@ if (eventDetails) {
     color1 = "black";
     color2 = "blue"
   }
-  // const eventAdding = addEventModel.findByIdAndUpdate(eventDetails._id,{
-  //   likes:eventDetails.likes
-  // });
   
-  //.log(eventDetails.eventName);
-  //console.log(events[0].userName)
   res.render('about.hbs', {
         description: eventDetails.description,
         likes: eventDetails.likes,
@@ -339,33 +329,15 @@ if (eventDetails) {
         cost:eventDetails.cost,
         tickets:eventDetails.maxNoOfTicket
       });
-  //res.send(events[0].status)
+  
 } else {
   res.send("sorry");
 }
   
-  
-  //console.log(events[0].status)
-  
-//   res.render('about.hbs', {
-//     description: eventDetails.description,
-//     likes: eventDetails.likes,
-//     eventId: eventDetails._id,
-//     eventName: eventDetails.eventName,
-//     username:events.userName ,
-//     status: events[0].status,
-//     color1: color1,
-//     color2: color2
-//   });
 });
 
 
 app.get('/comments', async (req, res, next) => {
-  //   res.render('likes.hbs',{
-  //     description:req.query.description,
-  //     likes:0,
-  //     eventActivity
-  //       });
   let description = [];
   const  events  = await eventActivityModel.findById(req.query.id,{
     eventName: 1,
@@ -379,31 +351,7 @@ app.get('/comments', async (req, res, next) => {
       comments:events
     });
   }
-//   },(err,events) => {
-//     if(err) {
-//       res.send(err);
-//     } else {
-//       var resultArray = [];
-//       var count=0;
-//       events.forEach(function(event,err){
-//         resultArray.push(event);
-//         count+=1;
-//       });
-//       var comments;
-//       for (var i=0;i<count;i++) {
-//       //  console.log(resultArray[i].likes);
-// comments+="<td>"+resultArray[i].userName+"\t :"+resultArray[i].comments+"</td>";
-// comments += '<td>abc</td>'
-//       }
-// if(events){
-//       res.render('description.hbs',{
-//         description:events,
-//         likes:10
-//       })
-//     }
 
-//     });
- // });
 });
 
 app.post('/description', (req, res) => {
@@ -450,37 +398,20 @@ app.post('/editEvent' , async (req,res) =>{
 app.get('/deleteEvent', async (req, res) => {
   const deletedEvent = await addEventModel.findOneAndDelete({
     eventName: req.query.eventName,
-    // description:req.query.description,
-    // bookingStartTime:req.query.bookingStartTime,
-    // bookingEndTime:req.query.bookingEndDate,
-    // cost:req.query.cost,
-    // maxNoOfTicket:req.query.tickets
+
   });
   if (deletedEvent) {
-    //res.redirect('./src/deletemsg.html');
+
    res.send('deleted suceessfully!...');
   } else {
     res.send('failed to delete!!!..');
   }
-  // res.render('deleteEvent.hbs',{
-  //   eventName : req.query.eventName,
-  //   description:req.query.description,
-  //   tickets:req.query.tickets,
-  //   bookingStartTime:req.query.bookingStartTime,
-  //   bookingEndTime:req.query.bookingEndTime,
-  //   cost:req.query.cost
-    
-  // });
 
 });
 app.post('/like' , (req, res) => {
   res.send("hi")
 })
 app.post('/likes',async (req,res)=>{
-  //console.log(req.query.likes);
-  //console.log("hi");
-  //res.send(req.body.status)
-  //res.send(req.body.id)
   const event = await addEventModel.findOneAndUpdate({
     _id: req.body.id
   }, {
@@ -494,27 +425,15 @@ app.post('/likes',async (req,res)=>{
   } else {
     status = false;
   }
- // console.log(req.body.like+" "+status)
- //console.log(req.body.like)
+ 
     const activity = await eventActivityModel.findOneAndUpdate({
       userName: req.body.userName, 
-        //  _id:ObjectId(req.query.id)
-        
+       
       eventName: req.body.eventName
     }, {
     status: status,
     likes: req.body.like 
     });
-    
-  // res.jsonp({likes:req.body.like,
-  // status:req.body.status})
-    
-  // if (event) {
-  //   res.send("updated");
-  // } else {
-  //   res.send("failed");
-  // }
-  //}
   
   
 });
@@ -549,7 +468,7 @@ app.post('/saveComments',(req,res)=>{
 
 app.post('/commentAdd', async(req, res) => {
  console.log(req.body.comments); 
- //res.send(req.query.eventName)
+ 
   const addComment = new addCommentModel({
     eventName: req.body.eventName,
     eventId: req.body.eventId,
@@ -558,7 +477,7 @@ app.post('/commentAdd', async(req, res) => {
     time: req.body.times
   });
   addComment.save().then(()=>{
-    //console.log("hi")
+
     res.jsonp([{time:req.body.times ,
 eventId:req.body.eventId,
 eventName:req.body.eventName,
@@ -569,39 +488,14 @@ comments:req.body.comments
   {
     console.log("sorry");
   });
-  // addComment.save().then(async ( )=> {
-  //   const allComments =await addCommentModel.find({
-  //    eventId: req.body.eventId 
-  //   });
 
-//     // res.redirect('viewComments.hbs', {
-//     //   eventName: req.body.eventName,
-//     //   userName: req.body.userName,
-//     //   eventId: req.body.eventId,
-//     //   comments: allComments
-//     // });
- 
-//  //console.log(allComments)
-//     // res.render('newComment.hbs',
-//     // {
-//     //   eventName: req.body.eventName,
-//     // eventId: req.body.eventId,
-//     // userName: req.body.userName,
-//     // comments: req.body.comments,
-//     // time: req.body.time 
-//     // });
-    
-  // }).catch(() => {
-  //   console.log("failed to post!!!!");
-  // });
 });
 app.get('/random.php',(req,res) => {
-  //res.send("hi");
+  
   res.sendfile('./views/random.php');
 });
 app.get('/likes',(req,res) => {
-  //res.send(req.query.name);
-  //console.log(req.query.name)
+  
   res.jsonp({test:"hi"});
 });
 
