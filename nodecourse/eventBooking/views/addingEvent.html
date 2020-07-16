@@ -1,0 +1,153 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <script>
+    $(document).ready(() => {
+      $("#submit").click((event)=>{
+       //alert("hi");
+        $.ajax({
+          url:"/addingEvent",
+          method:"POST",
+          dataType:"text",
+          data:{
+            edetails:$('#edetails').val(),
+            ename:$('#ename').val(),
+            npeople:$('#npeople').val(),
+            stime:$('#stime').val(),
+            etime:$('#etime').val(),
+            cost:$('#cost').val(),
+            image:$('#img').val()
+          },
+          success:function(response){
+            alert("event added sucessfully!!!....!!");
+            //var data = JSON.parse(response);
+           }
+          });
+        });
+        });
+    </script>
+
+    <style>
+      body{
+        background-color:palegreen;
+      }
+      .button{
+        position: absolute;
+        top:30px;
+        left:30px;
+        width: 200px;
+      }
+      .bs-example{
+        margin-top: 20px;
+        margin-left: 300px;
+        width: 800px;
+        border: 1px solid #fff; 
+        padding:30px;
+        border-radius: 20px;
+        background-color: lightgray;
+      }
+      #logout{
+        position: absolute;
+        top:10px;
+        left:1130px;
+      }
+    </style>
+    </head>
+  <body>
+    <h1 style ="text-align: center;">WELCOME TO ADMIN PAGE</h1>
+    <h2 style = "text-align:  center;color:green">ADDING EVENT DETAILS</h2>
+    <div class="bs-example">
+    <form method = "post" action ="/addingEvent" enctype = "multipart/form-data"       class="form-horizontal" id="registration">
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label"><strong>EventName</strong></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="ename" placeholder="eventname"name="ename"  required>
+        </div>
+    </div> 
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Description</strong></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="edetails" placeholder="Description" name="edetails" required>
+        </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label"><strong>ticket</strong> </label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="npeople" placeholder="maximum no of ticket"name="npeople" required>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Booking start time</strong></label>
+        <div class="col-sm-10">
+          <input type="datetime-local" class="form-control" id="stime" placeholder="booking start time" name = "stime" required>
+      </div>
+    </div> 
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Booking end time</strong> </label>
+        <div class="col-sm-10">
+          <input type="datetime-local" class="form-control" id="etime" placeholder="booking end time" name="etime" required>
+        </div>
+    </div> 
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Ticket cost</strong> </label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" id="cost" placeholder="cost" name="cost" required>
+        </div>
+      </div> 
+      <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Upload Image</strong> </label>
+        <div class="col-sm-10">
+          <input type="file" class="form-control" id="img" placeholder="upload image" name="img" required>
+        </div>
+      </div> 
+
+    <div class="form-group row">
+      <div class="col-sm-10 offset-sm-2">
+        <button  class="btn btn-primary" id= "submit" name ="submit">ADD EVENT</button>
+      </div>
+    </div>
+    </form>
+
+
+
+
+
+
+        <!-- <table>
+          <caption>EVENTS</caption>
+          <div class = "textbox">
+          <tr><td>EVENT NAME:</td><td><input type="text"name="ename" /></td></tr>
+          <tr><td>DESCRIPTION:</td><td><input type="text"name="edetails"></td></tr>
+          <tr><td>MAXIMUM NUMBER OF TICKET:</td><td><input type="number"name="npeople"></td></tr>
+          <tr><td>BOOKING START TIME:</td><td><input type="datetime-local"  value="2020-01-12T19:30:13.828Z" name = "stime"/></td></tr>
+          <tr><td>BOOKING END TIME:</td><td><input type="datetime-local" value="2020-01-13T19:30:13.828Z" name="etime"/></td></tr>
+          <tr><td>TICKET COST:</td><td><input type="number"name="cost"/></td></tr>
+          
+          <tr><td colspan="2"></td></tr>
+        </div>
+
+
+        </table>
+        <input type = "submit" name ="submit" value ="ADD"id ="btn"/> -->
+      </fieldset>
+      </form>
+    </div>
+      <!-- <a href = "/viewEvent"style="text-decoration:none"><button id="btn1">VIEW EVENT</button></a> -->
+      
+      
+      
+
+        <a href="/" class="btn btn-info btn-lg" id="logout">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+        </body>
+
+</html>
