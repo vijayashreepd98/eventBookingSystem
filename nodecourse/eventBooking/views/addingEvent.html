@@ -13,18 +13,25 @@
     $(document).ready(() => {
       $("#submit").click((event)=>{
        //alert("hi");
+       var fd = new FormData();
+       var file = $('#img')[0].files[0];
+       fd.append('file',file);
         $.ajax({
           url:"/addingEvent",
           method:"POST",
           dataType:"text",
-          data:{
+          data:
+          //new FormData(this),
+          
+          {
+            
             edetails:$('#edetails').val(),
             ename:$('#ename').val(),
             npeople:$('#npeople').val(),
             stime:$('#stime').val(),
             etime:$('#etime').val(),
             cost:$('#cost').val(),
-            image:$('#img').val()
+            image: $('#img').get(0).file
           },
           success:function(response){
             alert("event added sucessfully!!!....!!");
@@ -89,8 +96,8 @@
         <div class="col-sm-10">
           <input type="datetime-local" class="form-control" id="stime" placeholder="booking start time" name = "stime" required>
       </div>
-    </div> 
-    <div class="form-group row">
+    </div>
+        <div class="form-group row">
       <label for="inputEmail" class="col-sm-2 col-form-label"><strong>Booking end time</strong> </label>
         <div class="col-sm-10">
           <input type="datetime-local" class="form-control" id="etime" placeholder="booking end time" name="etime" required>
@@ -114,7 +121,7 @@
         <button  class="btn btn-primary" id= "submit" name ="submit">ADD EVENT</button>
       </div>
     </div>
-    </form>
+   
 
 
 

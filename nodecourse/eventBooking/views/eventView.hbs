@@ -1,0 +1,140 @@
+<html><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script>
+    {{!-- $(document)ready(function(){
+        $('#delete').click(()=>{
+            alert("Event deleted  successfully!!!!...");
+     });
+ }); --}}
+ Handlebars.registerHelper("if_eq", function(value1,value2,option){
+   if(value1%value2==0&&value1!=0){
+     return option.fn(this);
+   }else{
+     option.inverse(this);
+   }
+   }
+ })
+</script>
+
+<style>
+    #back{
+        position: absolute;
+        top:10px;
+        right: 30px;
+        width: 140px;
+        height: 60px;
+    }
+    table{
+        margin: 60px;
+    }
+      
+    table th{
+        color:white;
+        background-color: black;
+      
+  }
+  @media screen and (max-width: 1000px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 1000px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+.slides{
+  margin-top:10px;
+  margin-left:100px;
+}
+a:hover{
+  text-decoration: none;
+}
+.slides1{
+  margin-top:10px;
+  margin-left:100px;
+}a{
+  text-transform: uppercase;
+}
+
+.container table,th,tr{
+  margin-bottom:100px;
+}
+h1, h2{
+    text-align: center;
+    color: blue;
+
+}
+</style>
+ 
+</head>
+<body>
+<table class="table table-hover">
+    
+    {{!-- <thead><tr><th>EVENT NAME</th><th>DESCRIPTION</th><th>AVAILABLE TICKET</th><th>BOOKING START TIME</th><th>BOOKING END TIME</th><th>COST</th><th>image<th></tr></thead> --}}
+ <h1>WELCOME</h1>  
+<h2>EVENT BOOKING SYSTEM</h2>
+<div class="container">
+      <div class="row justify-content-center">
+        <table>
+            <tr>   
+    {{#each events}}
+  
+<td><div class='col-md-4'>
+     <h3  style="text-align: center,color:red;">{{this.eventName}}</h3>
+          <div class='card shadow' style='width: 40rem';>
+            <div class='inner'>
+           <img src="{{this.image}}" class='card-img-top' >";  
+  {{!-- //<img src='add1.php' class='card-img-top' alt='keralaimage'> --}}
+</div>
+  <div class='card-body text-center'>
+    <h5 class='card-title'>{{this.description}}</h5>
+    <p class='card-text'>Available tickets:{{this.maxNoOfTicket}}</p>
+     <p class='card-text'>Booking starts from:{{this.bookingStartTime}}, to:{{this.bookingEndTime}} </p>
+     <h2 class='card-text'>COST:{{this.cost}}</h2>
+    <a href='/' class='btn btn-success'>Learn More.....</a>
+  </div>
+</div>
+</div></td>
+{{#if_eq @key 3}}
+            </tr>
+<tr>
+{{/if_eq}}
+
+    {{!-- <tr><td>{{this.eventName}}</td><td>{{this.description}}</td><td>{{this.maxNoOfTicket}}</td>
+    <td>{{this.bookingStartTime}}</td><td>{{this.bookingEndTime}}</td><td>{{this.cost}}</td><td><img src="{{this.image}}" width="50px" height="100px"/></td></tr></tr> --}}
+{{/each}}  
+        </table></div></div>
+    
+{{!-- </table> --}}
+ <a href="/adminAddingEvent"><button type="button" onclick="goBack()" class="btn btn-success" id="back">ADD NEW EVENT</button>
+</a>
+</body> 
+
+</html> 
+
